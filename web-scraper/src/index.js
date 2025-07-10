@@ -121,7 +121,7 @@ function validateResults(results) {
 
 // 核心爬取函数
 async function scrapeBingCore(query, pageLimit = 1) {
-    console.log(`开始搜索: ${query}, 页数限制: ${pageLimit}`);
+    console.log(`🔍 Scraping: "${query}"`);
 
     const browser = await initBrowser();
     const page = await browser.newPage();
@@ -159,7 +159,7 @@ async function scrapeBingCore(query, pageLimit = 1) {
         let currentPage = 1;
         while (currentPage <= pageLimit) {
             const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}&first=${(currentPage - 1) * 10 + 1}`;
-            console.log(`正在抓取第 ${currentPage} 页: ${searchUrl}`);
+            console.log(`📄 Page ${currentPage}: ${searchUrl}`);
 
             // 页面导航，带超时控制
             await page.goto(searchUrl, {
@@ -170,6 +170,7 @@ async function scrapeBingCore(query, pageLimit = 1) {
             // 检测反爬虫机制
             const isBlocked = await detectAntiBot(page);
             if (isBlocked) {
+                console.error('❌ Anti-bot protection detected');
                 throw new Error('Anti-bot protection detected');
             }
 
@@ -182,7 +183,7 @@ async function scrapeBingCore(query, pageLimit = 1) {
                 // 如果找不到主要选择器，尝试检查页面内容
                 const pageContent = await page.content();
                 if (pageContent.includes('No results found') || pageContent.includes('没有找到结果')) {
-                    console.log('页面显示无搜索结果');
+                    console.log('⚠️ No results found');
                     break;
                 }
                 throw selectorError;
