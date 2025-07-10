@@ -98,8 +98,9 @@ PORT=3001
 
 ## 📞 Contact
 
-- Twitter: [@yourtwitterhandle](https://twitter.com/yourtwitterhandle)
-- WeChat: your_wechat_id
+- Twitter: [@yourtwitterhandle](https://x.com/ootR77013489)
+- WeChat:
+![wechat](./web-scraper/image/wechat.png)
 
 ## ⚠️ Disclaimer
 
