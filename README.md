@@ -49,7 +49,8 @@ curl "http://localhost:3001/search?q=your+search+query&page_limit=1"
 - `q` (required): Search query
 - `page_limit` (optional): Number of pages to scrape (default: 1)
 
-### Response Format
+### Response Format 
+The API returns exactly the same JSON structure as SerpAPI
 
 ```json
 {
